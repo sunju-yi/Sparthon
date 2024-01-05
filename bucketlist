@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Diphylleia&family=Nanum+Gothic&display=swap');
+
+    * {
+      font-family: 'Diphylleia', serif;
+    }
+
+    .bg {
+      background-image:
+        url('https://www.google.co.kr/url?sa=i&url=https%3A%2F%2Fwww.freepik.com%2Ffree-photos-vectors%2Fpost-it&psig=AOvVaw0nctueYcnz5LTczlXqBrEh&ust=1704548901488000&source=images&cd=vfe&opi=89978449&ved=0CBMQjRxqFwoTCPD2sdOxxoMDFQAAAAAdAAAAABAD');
+      background-position: center;
+      background-size: cover;
+      margin: auto;
+      width: 360px;
+    }
+
+    .title {
+      background-color: tomato;
+      color: white;
+      border-radius: 5px;
+      text-align: center;
+      padding: 4px 14px;
+
+    }
+
+    .bucket {
+      width: 160px;
+      height: 160px;
+      background-position: center;
+      background-size: cover;
+      class='bucket'
+    }
+
+    .img1 {
+      background-image: url('bucket-red.png');
+    }
+
+    .img2 {
+      background-image:
+        url('bucket-lightred.png');
+    }
+
+    .center {
+      text-align: center;
+
+    }
+  </style>
+
+</head>
+
+<body class="bg">
+  <h1 class="title">2024 신년계획</h1> <br>
+  <script src="script.js"></script>
+  <h4 class='center'>올해 안에 <br>적어도 3가지를 달성하는 것을 목표로!</h4><br>
+  <div class='flex-row wrap'>
+    <div class='bucket img1 center'>나만의 모바일 앱 만들기</div>
+    <div class='bucket img2 center'>중국어 HSK6급 취득하기</div>
+    <div class='bucket img1 center'>IELTS overall 7.0 취득하기</div>
+    <div class='bucket img2 center'>졸업논문 쓰기</div>
+    <div></div>
+  </div>
+  <script>
+    // 페이지 로드 시 이전 상태 복원
+    document.addEventListener("DOMContentLoaded", (event) => {
+      const buckets = document.querySelectorAll(".bucket");
+      buckets.forEach((bucket, index) => {
+        // 로컬 스토리지에서 상태 읽기
+        const isDone = localStorage.getItem("bucket" + index) === "done";
+        if (isDone) {
+          bucket.classList.add("done");
+        }
+      });
+    });
+
+    // 버킷 리스트 클릭 이벤트
+    const buckets = document.querySelectorAll(".bucket");
+    buckets.forEach((bucket, index) => {
+      bucket.addEventListener("click", function () {
+        // 클래스 토글
+        bucket.classList.toggle("done");
+
+        // 로컬 스토리지에 상태 저장
+        if (bucket.classList.contains("done")) {
+          localStorage.setItem("bucket" + index, "done");
+        } else {
+          localStorage.setItem("bucket" + index, "");
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>
